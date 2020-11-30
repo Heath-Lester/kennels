@@ -1,6 +1,6 @@
 
 import React from "react"
-import { Route } from "react-router-dom"
+import { Route, Redirect } from "react-router-dom"
 import { NavBar } from "./nav/NavBar"
 import { ApplicationViews } from "./ApplicationViews"
 import "./Kennel.css"
@@ -20,6 +20,8 @@ import "./location/Location.css"
 // import { CustomerProvider } from "./customer/CustomerProvider"
 // import { CustomerList } from "./customer/CustomerList"
 import "./customer/Customer.css"
+import { Login } from "./auth/Login"
+import { Register } from "./auth/Register"
 
 
 export const Kennel = () => (
@@ -36,6 +38,9 @@ export const Kennel = () => (
                 return <Redirect to="/login" />
             }
         }} />
+
+        <Route path="/login" render={props => <Login {...props} />} />
+        <Route path="/register" render={props => <Register {...props} />} />
     </>
 )
 
