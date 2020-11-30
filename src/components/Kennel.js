@@ -24,14 +24,25 @@ import "./customer/Customer.css"
 
 export const Kennel = () => (
     <>
-        <NavBar />
-        <ApplicationViews />
+        <Route render ={ () => {
+            if (localStorage.getItem("kennel_customer")) {
+                return (
+                    <>
+                    <Route render={props => <NavBar {...props} />} />
+                    <Route render={props => <ApplicationViews {...props} />} />
+                    </>
+                )
+            } else {
+                return <Redirect to="/login" />
+            }
+        }} />
     </>
 )
 
 
 
-
+{/* <NavBar />
+<ApplicationViews /> */}
 
 
 
