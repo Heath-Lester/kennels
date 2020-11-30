@@ -93,7 +93,7 @@ export const AnimalForm = (props) => {
                         constructNewAnimal()
                     }}
                     className="btn btn-primary">
-                        Save Animal
+                        Make Appointment
                     </button>
             </form>
         )
