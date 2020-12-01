@@ -11,6 +11,7 @@ import { CustomerList } from "./customer/CustomerList"
 import { EmployeeList } from "./employee/EmployeeList"
 import { EmployeeForm } from "./employee/EmployeeForm"
 import { AnimalForm } from "./animal/AnimalForm"
+import { EmployeeDetail } from "./employee/EmployeeDetail"
 
 
 
@@ -51,8 +52,12 @@ export const ApplicationViews = (props) => {
                         <Route exact path="/employees" render={
                             props => <EmployeeList {...props} />
                         } />
+                        {/* {...props} is the spread operator that is equavalent to <EmployeeList history={props.history} location={props.location} match={props.match} /> in this context. */}
                         <Route exact path="/employees/create" render={
                             props => <EmployeeForm {...props} />
+                        } />
+                        <Route exact path="/employees/:employeeId(\d+)" render={
+                            props => <EmployeeDetail {...props} />
                         } />
                     </AnimalProvider>
                 </LocationProvider>
