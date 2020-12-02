@@ -8,9 +8,11 @@ import "./Animal.css"
 
 export const AnimalList = ({ history }) => {
 
-    const { animals, getAnimals } = useContext(AnimalContext)
+    const { animals, searchTerms, getAnimals } = useContext(AnimalContext)
     // const { locations, getLocations } = useContext(LocationContext)
     // const { customers, getCustomers } = useContext(CustomerContext)
+
+    const [ filteredAnimals, setFiltered ] = useState([])
 
     useEffect(() => {
         console.log("AnimalList: Initial render before data")
@@ -19,6 +21,15 @@ export const AnimalList = ({ history }) => {
             // .then(getLocations)
 
     }, [])
+
+    useEffect(() => {
+        if (searchTerms !== "") {
+            const subset = animals.filter(animal => animal.name.toLowerCase().includes(searchTerms.toLowerCase()))
+            setFiltered(subset)
+        } else {
+            setFiltered(animals)
+        }
+    }, [searchTerms, animals])
 
     return (
         <div className="animals">
@@ -30,7 +41,7 @@ export const AnimalList = ({ history }) => {
 
             <article className="animalList">
                 {
-                    animals.map(anml => {
+                    filteredAnimals.map(anml => {
                         // const owner = customers.find(c => c.id === anml.customerId)
                         // const clinic = locations.find(l => l.id === anml.locationId)
 

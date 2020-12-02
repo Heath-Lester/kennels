@@ -4,7 +4,11 @@ import React, { useState, useEffect } from "react"
 
 export const AnimalContext = React.createContext()
 
+
 export const AnimalProvider = (props) => {
+
+    const [searchTerms, setTerms] = useState("")
+
     const [animals, setAnimals] = useState([])
 
 
@@ -27,21 +31,23 @@ export const AnimalProvider = (props) => {
             .then(getAnimals)
     }
 
+
     const getAnimalById = id => {
         return fetch(`http://localhost:8088/animals/${id}?_expand=location&_expand=customer`)
             .then(res => res.json())
     }
 
+
     const releaseAnimal = id => {
         return fetch(`http://localhost:8088/animals/${id}`, {
-            method: "DELETE", 
+            method: "DELETE",
         })
             .then(res => res.json())
     }
 
     return (
         <AnimalContext.Provider value={{
-            animals, addAnimal, getAnimals, getAnimalById, releaseAnimal
+            animals, addAnimal, getAnimals, getAnimalById, releaseAnimal, setTerms, searchTerms
         }}>
             {props.children}
         </AnimalContext.Provider>
