@@ -45,9 +45,22 @@ export const AnimalProvider = (props) => {
             .then(res => res.json())
     }
 
+
+    const updateAnimal = animal => {
+        return fetch(`http://localhost:8088/animals/${animal.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(animal)
+        })
+            .then(getAnimals)
+    }
+
+
     return (
         <AnimalContext.Provider value={{
-            animals, addAnimal, getAnimals, getAnimalById, releaseAnimal, setTerms, searchTerms
+            animals, addAnimal, getAnimals, getAnimalById, releaseAnimal, setTerms, searchTerms, updateAnimal
         }}>
             {props.children}
         </AnimalContext.Provider>

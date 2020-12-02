@@ -25,6 +25,7 @@ export const AnimalDetails = props => {
             <div className="animal__breed">{animal.breed}</div>
             <div className="animal__location">Location: {animal.location.name}</div>
             <div className="animal__owner">Customer: {animal.customer.name}</div>
+            <div className="animal__treatments">Treatment(s): { animal.treatment ? animal.treatment : "None" }</div>
             <button className="btn--release"
                 onClick={() => {
                     releaseAnimal(animal.id)
